@@ -19,5 +19,18 @@ fun test2Expression(x: Int, y: Int): Int = x + y
 fun variables() {
     var x = 20
     val l: Long = x.toLong()
+}
+
+/// Classes
+
+//class Person
+//open class Person(name: String, age: Int)
+abstract class Person(name: String, age: Int)
+
+class Developer(name: String): Person(name, 30)
+
+fun testClass() {
+//    val p = Person("John", 20)
+    val d = Developer("Tom")
 
 }
