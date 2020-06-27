@@ -2,6 +2,7 @@ package com.example.kotlin.training
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -10,8 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toast("Hello World")
+        val message = findViewById<TextView>(R.id.message)
+        message.text = "Hello Kotlin"
 
+        // toast("Hello World")
     }
 
     private fun toast(message: String) {

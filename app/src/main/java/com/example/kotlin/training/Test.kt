@@ -14,3 +14,10 @@ fun test2(): Int { // with returning value
 // Expression function
 fun test2Expression(x: Int, y: Int): Int = x + y
 
+// Variables
+
+fun variables() {
+    var x = 20
+    val l: Long = x.toLong()
+
+}
