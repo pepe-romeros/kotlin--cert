@@ -2,6 +2,8 @@ package com.example.kotlin.training
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 
@@ -11,8 +13,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val message = findViewById<TextView>(R.id.message)
-        message.text = "Hello Kotlin"
+        val inputMessage = findViewById<EditText>(R.id.message)
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            toast("Hello ${inputMessage.text}")
+        }
+//        val message = findViewById<TextView>(R.id.message)
+//        message.text = "Hello Kotlin"
 
         // toast("Hello World")
     }
