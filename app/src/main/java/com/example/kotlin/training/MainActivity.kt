@@ -8,14 +8,15 @@ import com.example.kotlin.training.util.toast
 
 class MainActivity : BaseActivity() {
 
+    private val adapter by lazy { MediaAdapter { toast(it.title) } }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recycler.adapter = MediaAdapter(getItems()) { toast(it.title) }
-        toast("MainActivity created")
-
+        adapter.items = getItems()
+        binding.recycler.adapter = adapter
     }
 
 }

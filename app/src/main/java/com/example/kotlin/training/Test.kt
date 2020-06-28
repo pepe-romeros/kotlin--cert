@@ -97,3 +97,6 @@ inline fun <T, U>T.run2(body: T.() -> U): U = body()
 //    return body(this)
 //}
 inline fun <T, U>T.let2(body: (T) -> U): U = body(this)
+
+// property delegates
+// lazy, observable, vetoable
