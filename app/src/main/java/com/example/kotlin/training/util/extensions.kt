@@ -1,6 +1,8 @@
 package com.example.kotlin.training.util
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,3 +35,10 @@ fun ImageView.loadUrl(imageUrl: String) {
 }
 
 // endregion extensions to add functionality to Views and ViewGroups
+
+// region extensions to handle user navigation
+inline fun <reified T: Activity> Context.startActivity(destinationActivity: Class<T>, intent: Intent = Intent(this, T::class.java)) {
+    startActivity(intent)
+}
+// endregion extensions to handle user navigation
+
