@@ -10,14 +10,16 @@ import com.example.kotlin.training.model.MediaItem.Type
 import com.example.kotlin.training.util.inflate
 import com.example.kotlin.training.util.loadUrl
 
-class MediaAdapter(private val mediaList:List<MediaItem>): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+class MediaAdapter(private val mediaList:List<MediaItem>, private val listener: (MediaItem) -> Unit): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.inflate(R.layout.view_media_item))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(mediaList[position])
+        val mediaItem = mediaList[position]
+        holder.bind(mediaItem)
+        holder.itemView.setOnClickListener { listener(mediaItem) }
     }
 
     override fun getItemCount(): Int = mediaList.size

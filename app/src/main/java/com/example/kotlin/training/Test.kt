@@ -1,5 +1,8 @@
 package com.example.kotlin.training
 
+import android.content.Context
+import android.widget.TextView
+
 // Functions don't need to be inside a class -> First class citizens
 
 fun test() {
@@ -64,3 +67,33 @@ fun testClass() {
     val name = d.name
 
 }
+
+fun test3(context: Context) {
+    val textView: TextView = TextView(context).apply2 {
+        text = "Hello"
+        hint = "GoodBye"
+        textSize = 20f
+    }
+
+}
+
+//fun TextView.apply2(body: TextView.() -> Unit): TextView {
+//    body()
+//    return this
+//}
+inline fun <T>T.apply2(body: T.() -> Unit): T {
+    body()
+    return this
+}
+
+// run
+//fun <T, U>T.run2(body: T.() -> U): U {
+//    return body()
+//}
+inline fun <T, U>T.run2(body: T.() -> U): U = body()
+
+// let
+//fun <T, U>T.let2(body: (T) -> U): U {
+//    return body(this)
+//}
+inline fun <T, U>T.let2(body: (T) -> U): U = body(this)
