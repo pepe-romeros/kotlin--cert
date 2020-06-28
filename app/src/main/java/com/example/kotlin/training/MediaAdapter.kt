@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.kotlin.training.model.MediaItem
+import com.example.kotlin.training.model.MediaItem.Type
 import com.example.kotlin.training.util.inflate
 import com.example.kotlin.training.util.loadUrl
 
@@ -26,10 +27,15 @@ class MediaAdapter(private val mediaList:List<MediaItem>): RecyclerView.Adapter<
 
         private val title:TextView = itemView.findViewById(R.id.mediaTitle)
         private val image:ImageView = itemView.findViewById(R.id.mediaThumb)
+        private val videoIndicator:ImageView = itemView.findViewById(R.id.mediaVideoIndicator)
 
         fun bind(mediaItem: MediaItem) {
             title.text = mediaItem.title
             image.loadUrl(mediaItem.url)
+            videoIndicator.visibility = when(mediaItem.type) {
+                Type.VIDEO -> View.VISIBLE
+                Type.PHOTO -> View.GONE
+            }
         }
     }
 
