@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.annotation.IdRes
 import androidx.lifecycle.lifecycleScope
 import com.example.kotlin.training.R
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityMainBinding
 import com.example.kotlin.training.detail.DetailActivity
 import com.example.kotlin.training.model.MediaItem.Type
+import com.example.kotlin.training.util.Filter
 import com.example.kotlin.training.util.MediaProvider
 import com.example.kotlin.training.util.startActivity
 
@@ -41,20 +41,24 @@ class MainActivity : BaseActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        updateItems(item.itemId)
+        val filter = when(item.itemId) {
+            R.id.filter_photos -> Filter.ByType(Type.PHOTO)
+            R.id.filter_videos -> Filter.ByType(Type.VIDEO)
+            else -> Filter.None
+        }
+        updateItems(filter)
         return super.onOptionsItemSelected(item)
     }
 
-    private fun updateItems(@IdRes filterId: Int = R.id.filter_all) {
+    private fun updateItems(filter: Filter = Filter.None) {
         lifecycleScope.launch {
             binding.progress.visibility = View.VISIBLE
 
             val items = withContext(Dispatchers.IO) { MediaProvider.getItems() }
 
-            adapter.items = when (filterId) {
-                R.id.filter_photos -> items.filter { it.type == Type.PHOTO }
-                R.id.filter_videos -> items.filter { it.type == Type.VIDEO }
-                else -> items
+            adapter.items = when (filter) {
+                Filter.None -> items
+                is Filter.ByType -> items.filter { it.type == filter.type }
             }
 
             binding.progress.visibility = View.GONE
