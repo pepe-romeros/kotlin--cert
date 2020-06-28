@@ -12,7 +12,9 @@ import com.example.kotlin.training.util.inflate
 import com.example.kotlin.training.util.loadUrl
 import kotlin.properties.Delegates
 
-class MediaAdapter(private val listener: (MediaItem) -> Unit): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+typealias MediaListener = (MediaItem) -> Unit
+
+class MediaAdapter(private val listener: MediaListener): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     var items: List<MediaItem> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
