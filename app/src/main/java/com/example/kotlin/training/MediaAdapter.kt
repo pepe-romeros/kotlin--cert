@@ -27,11 +27,13 @@ class MediaAdapter(private val mediaList:List<MediaItem>): RecyclerView.Adapter<
         private val binding = ViewMediaItemBinding.bind(itemView)
 
         fun bind(mediaItem: MediaItem) {
-            binding.mediaTitle.text = mediaItem.title
-            binding.mediaThumb.loadUrl(mediaItem.url)
-            binding.mediaVideoIndicator.visibility = when(mediaItem.type) {
-                Type.VIDEO -> View.VISIBLE
-                Type.PHOTO -> View.GONE
+            with(binding) {
+                mediaTitle.text = mediaItem.title
+                mediaThumb.loadUrl(mediaItem.url)
+                mediaVideoIndicator.visibility = when(mediaItem.type) {
+                    Type.PHOTO -> View.GONE
+                    Type.VIDEO -> View.VISIBLE
+                }
             }
         }
     }
