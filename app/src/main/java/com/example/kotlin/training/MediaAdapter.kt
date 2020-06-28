@@ -2,9 +2,8 @@ package com.example.kotlin.training
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.training.databinding.ViewMediaItemBinding
 
 import com.example.kotlin.training.model.MediaItem
 import com.example.kotlin.training.model.MediaItem.Type
@@ -25,14 +24,12 @@ class MediaAdapter(private val mediaList:List<MediaItem>): RecyclerView.Adapter<
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val title:TextView = itemView.findViewById(R.id.mediaTitle)
-        private val image:ImageView = itemView.findViewById(R.id.mediaThumb)
-        private val videoIndicator:ImageView = itemView.findViewById(R.id.mediaVideoIndicator)
+        private val binding = ViewMediaItemBinding.bind(itemView)
 
         fun bind(mediaItem: MediaItem) {
-            title.text = mediaItem.title
-            image.loadUrl(mediaItem.url)
-            videoIndicator.visibility = when(mediaItem.type) {
+            binding.mediaTitle.text = mediaItem.title
+            binding.mediaThumb.loadUrl(mediaItem.url)
+            binding.mediaVideoIndicator.visibility = when(mediaItem.type) {
                 Type.VIDEO -> View.VISIBLE
                 Type.PHOTO -> View.GONE
             }
