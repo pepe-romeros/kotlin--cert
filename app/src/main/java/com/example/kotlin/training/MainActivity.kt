@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.IdRes
+import androidx.lifecycle.lifecycleScope
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityMainBinding
 import com.example.kotlin.training.model.MediaItem.Type
@@ -13,12 +14,7 @@ import com.example.kotlin.training.util.toast
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class MainActivity : BaseActivity(), CoroutineScope {
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job
-
-    private lateinit var job: Job
+class MainActivity : BaseActivity() {
 
     private val adapter = MediaAdapter { toast(it.title) }
     private lateinit var binding: ActivityMainBinding
@@ -28,8 +24,6 @@ class MainActivity : BaseActivity(), CoroutineScope {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        job = SupervisorJob()
 
         binding.recycler.adapter = adapter
         updateItems()
@@ -46,13 +40,8 @@ class MainActivity : BaseActivity(), CoroutineScope {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        job.cancel()
-        super.onDestroy()
-    }
-
     private fun updateItems(@IdRes filterId: Int = R.id.filter_all) {
-        launch {
+        lifecycleScope.launch {
             binding.progress.visibility = View.VISIBLE
 
             val items = withContext(Dispatchers.IO) { MediaProvider.getItems() }
