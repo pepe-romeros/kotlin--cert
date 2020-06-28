@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Player</string>
+    <string name="media_image_desc">Media thumb image</string>
 </resources>

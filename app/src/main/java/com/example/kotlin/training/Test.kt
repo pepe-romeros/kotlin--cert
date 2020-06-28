@@ -25,12 +25,42 @@ fun variables() {
 
 //class Person
 //open class Person(name: String, age: Int)
-abstract class Person(name: String, age: Int)
+//abstract class Person(name: String, age: Int) {
+//    // java way
+//    private val name: String
+//    private val age: Int
+//
+//    init {
+//        this.name = name
+//        this.age = age
+//    }
+//}
+
+// optimization step 1
+//abstract class Person(name: String, age: Int) {
+//    private val name: String = name
+//    private val age: Int = age
+//}
+
+// Optimization step 2
+//abstract class Person(val name: String, val age: Int)
+
+// Custom setter getter
+abstract class Person(name: String, val age: Int) {
+    var name = name
+    get() = "Hello $field"
+    set(value) {
+        if(field != value) {
+            field = value
+        }
+    }
+}
 
 class Developer(name: String): Person(name, 30)
 
 fun testClass() {
 //    val p = Person("John", 20)
     val d = Developer("Tom")
+    val name = d.name
 
 }
