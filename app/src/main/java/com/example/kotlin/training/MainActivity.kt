@@ -11,19 +11,27 @@ import com.example.kotlin.training.model.MediaItem.Type
 import com.example.kotlin.training.util.MediaProvider
 import com.example.kotlin.training.util.toast
 import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    private lateinit var job: Job
 
     private val adapter = MediaAdapter { toast(it.title) }
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recycler.adapter = adapter
+        job = SupervisorJob()
 
+        binding.recycler.adapter = adapter
         updateItems()
     }
 
@@ -32,9 +40,19 @@ class MainActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun updateItems(@IdRes filterId: Int = R.id.filter_all) {
 
-        GlobalScope.launch(Dispatchers.Main) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        updateItems(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        job.cancel()
+        super.onDestroy()
+    }
+
+    private fun updateItems(@IdRes filterId: Int = R.id.filter_all) {
+        launch {
             binding.progress.visibility = View.VISIBLE
 
             val items = withContext(Dispatchers.IO) { MediaProvider.getItems() }
@@ -47,11 +65,6 @@ class MainActivity : BaseActivity() {
 
             binding.progress.visibility = View.GONE
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        updateItems(item.itemId)
-        return super.onOptionsItemSelected(item)
     }
 
 }
