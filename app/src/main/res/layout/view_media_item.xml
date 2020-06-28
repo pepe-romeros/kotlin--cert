@@ -13,6 +13,7 @@
 
         <ImageView
             android:id="@+id/mediaThumb"
+            android:contentDescription="@string/media_image_desc"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -20,6 +21,7 @@
 
         <ImageView
             android:id="@+id/mediaVideoIndicator"
+            android:contentDescription="@string/video_indicator_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -1,8 +1,9 @@
-package com.example.kotlin.training
+package com.example.kotlin.training.home
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.training.R
 import com.example.kotlin.training.databinding.ViewMediaItemBinding
 
 import com.example.kotlin.training.model.MediaItem
@@ -18,7 +19,11 @@ class MediaAdapter(private val listener: (MediaItem) -> Unit): RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.inflate(R.layout.view_media_item))
+        return ViewHolder(
+            parent.inflate(
+                R.layout.view_media_item
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

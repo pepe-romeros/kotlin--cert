@@ -1,4 +1,4 @@
-package com.example.kotlin.training
+package com.example.kotlin.training.home
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,17 +6,22 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.IdRes
 import androidx.lifecycle.lifecycleScope
+import com.example.kotlin.training.R
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityMainBinding
+import com.example.kotlin.training.detail.DetailActivity
 import com.example.kotlin.training.model.MediaItem.Type
 import com.example.kotlin.training.util.MediaProvider
-import com.example.kotlin.training.util.toast
+import com.example.kotlin.training.util.startActivity
+
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
 class MainActivity : BaseActivity() {
 
-    private val adapter = MediaAdapter { toast(it.title) }
+    private val adapter = MediaAdapter {
+        startActivity<DetailActivity>(DetailActivity.EXTRA_ID to it.id)
+    }
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

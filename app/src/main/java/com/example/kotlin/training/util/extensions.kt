@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.kotlin.training.base.BaseActivity
 
 // region extensions to show messages to the user
 
@@ -37,8 +39,10 @@ fun ImageView.loadUrl(imageUrl: String) {
 // endregion extensions to add functionality to Views and ViewGroups
 
 // region extensions to handle user navigation
-inline fun <reified T: Activity> Context.startActivity(destinationActivity: Class<T>, intent: Intent = Intent(this, T::class.java)) {
-    startActivity(intent)
+inline fun <reified T: Activity> Context.startActivity(vararg pairs: Pair<String, Any?>) {
+    Intent(this, T::class.java)
+        .apply { putExtras(bundleOf(*pairs)) }
+        .also(::startActivity)
 }
 // endregion extensions to handle user navigation
 
