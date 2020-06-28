@@ -128,3 +128,12 @@ fun test5(items: List<MediaItem>) {
         print("Key is $key and Value is $value")
     }
 }
+
+// infix
+fun test6() {
+//    0.until2(10)
+    0 until2 10
+}
+infix fun Int.until2(other: Int) {
+
+}
