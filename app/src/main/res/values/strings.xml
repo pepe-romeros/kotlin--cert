@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My Player</string>
     <string name="media_image_desc">Media thumb image</string>
+    <string name="all">All</string>
+    <string name="photos">Photos</string>
+    <string name="videos">Videos</string>
 </resources>

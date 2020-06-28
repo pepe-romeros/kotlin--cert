@@ -2,6 +2,7 @@ package com.example.kotlin.training
 
 import android.content.Context
 import android.widget.TextView
+import com.example.kotlin.training.model.MediaItem
 
 // Functions don't need to be inside a class -> First class citizens
 
@@ -100,3 +101,30 @@ inline fun <T, U>T.let2(body: (T) -> U): U = body(this)
 
 // property delegates
 // lazy, observable, vetoable
+
+// Collections
+fun test4(context: Context) {
+    val listOfInt: List<Int> = listOf(1, 3, 5, 6, 7, 9) // is immutable
+    val mutableListOfInt:MutableList<Int> = mutableListOf(1, 3, 5, 6, 7, 9)
+
+    val evenValues:List<String> = listOfInt.filter { it % 2 == 0 }.map { it.toString() }
+//
+//    setOf<>()
+//    mapOf<>()
+//    sequenceOf()
+}
+
+fun test5(items: List<MediaItem>) {
+    val listOfUrls = items
+        .asSequence()
+        .filter { it.type == MediaItem.Type.PHOTO }
+        .map { it.url }
+        .toList()
+
+//    val myMap = mapOf(Pair(1, "a"), Pair(2, "b"))
+    val myMap = mapOf(1 to "a", 2 to "b")
+
+    for((key, value) in myMap) {
+        print("Key is $key and Value is $value")
+    }
+}
