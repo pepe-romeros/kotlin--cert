@@ -2,7 +2,7 @@ package com.example.kotlin.training
 
 import android.content.Context
 import android.widget.TextView
-import com.example.kotlin.training.model.MediaItem
+import com.example.kotlin.training.data.MediaItem
 
 // Functions don't need to be inside a class -> First class citizens
 

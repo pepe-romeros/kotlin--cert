@@ -5,8 +5,8 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityDetailBinding
-import com.example.kotlin.training.model.MediaItem.*
-import com.example.kotlin.training.util.MediaProvider
+import com.example.kotlin.training.data.MediaItem.*
+import com.example.kotlin.training.data.MediaProvider
 import com.example.kotlin.training.util.loadUrl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,6 +1,4 @@
-package com.example.kotlin.training.util
-
-import com.example.kotlin.training.model.MediaItem
+package com.example.kotlin.training.data
 
 sealed class Filter {
     object None: Filter()

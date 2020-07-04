@@ -1,4 +1,4 @@
-package com.example.kotlin.training.model
+package com.example.kotlin.training.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

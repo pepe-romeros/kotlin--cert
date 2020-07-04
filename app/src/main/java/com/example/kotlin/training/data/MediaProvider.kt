@@ -1,7 +1,6 @@
-package com.example.kotlin.training.util
+package com.example.kotlin.training.data
 
-import com.example.kotlin.training.model.MediaItem.Type
-import com.example.kotlin.training.model.MediaItem
+import com.example.kotlin.training.data.MediaItem.Type
 
 object MediaProvider {
 

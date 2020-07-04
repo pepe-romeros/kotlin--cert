@@ -9,9 +9,9 @@ import com.example.kotlin.training.R
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityMainBinding
 import com.example.kotlin.training.detail.DetailActivity
-import com.example.kotlin.training.model.MediaItem.Type
-import com.example.kotlin.training.util.Filter
-import com.example.kotlin.training.util.MediaProvider
+import com.example.kotlin.training.data.MediaItem.Type
+import com.example.kotlin.training.data.Filter
+import com.example.kotlin.training.data.MediaProvider
 import com.example.kotlin.training.util.startActivity
 
 import kotlinx.coroutines.*

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.training.R
 import com.example.kotlin.training.databinding.ViewMediaItemBinding
 
-import com.example.kotlin.training.model.MediaItem
-import com.example.kotlin.training.model.MediaItem.Type
+import com.example.kotlin.training.data.MediaItem
+import com.example.kotlin.training.data.MediaItem.Type
 import com.example.kotlin.training.util.inflate
 import com.example.kotlin.training.util.loadUrl
 import kotlin.properties.Delegates
