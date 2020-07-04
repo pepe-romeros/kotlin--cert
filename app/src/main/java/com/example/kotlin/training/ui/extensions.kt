@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.core.os.bundleOf
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -35,6 +36,10 @@ fun ImageView.loadUrl(imageUrl: String) {
     Glide.with(this).load(imageUrl).into(this)
 }
 
+fun View.setVisible(visible: Boolean) {
+    visibility = if (visible) View.VISIBLE else View.GONE
+}
+
 // endregion extensions to add functionality to Views and ViewGroups
 
 // region extensions to handle user navigation
@@ -45,3 +50,15 @@ inline fun <reified T: Activity> Context.startActivity(vararg pairs: Pair<String
 }
 // endregion extensions to handle user navigation
 
+// region extend LifeCycle Owner
+fun <T> LifecycleOwner.observe(liveData: LiveData<T>, observer: (T) -> Unit) {
+    liveData.observe(this, Observer(observer))
+}
+inline fun <reified T: ViewModel> ViewModelStoreOwner.getViewModel(body: T.() -> Unit): T {
+    return ViewModelProvider(this)[T::class.java].apply(body)
+}
+
+fun <T> LifecycleOwner.observeEvent(liveData: LiveData<Event<T>>, observer: (T) -> Unit) {
+    observe(liveData){ it.getContentIfNotHandled()?.let(observer) }
+}
+// endregion extend LifeCycle Owner
