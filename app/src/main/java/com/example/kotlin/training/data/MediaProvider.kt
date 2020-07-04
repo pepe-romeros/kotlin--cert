@@ -2,9 +2,13 @@ package com.example.kotlin.training.data
 
 import com.example.kotlin.training.data.MediaItem.Type
 
-object MediaProvider {
+interface MediaProvider {
+    fun getItems(): List<MediaItem>
+}
 
-    fun getItems(): List<MediaItem> {
+object MediaProviderImpl: MediaProvider {
+
+    override fun getItems(): List<MediaItem> {
         Thread.sleep(2000)
         return (1..10).map {
             MediaItem(
