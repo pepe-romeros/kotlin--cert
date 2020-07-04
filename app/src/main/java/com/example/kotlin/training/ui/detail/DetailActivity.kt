@@ -12,34 +12,32 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class DetailActivity : BaseActivity() {
+class DetailActivity : BaseActivity(), DetailPresenter.View {
 
     companion object {
         const val EXTRA_ID = "DetailActivity:id"
     }
 
+    private val presenter = DetailPresenter(this, lifecycleScope)
+    private lateinit var binding: ActivityDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        presenter.onCreate(intent.getIntExtra(EXTRA_ID, -1))
+    }
 
-        val id = intent.getIntExtra(EXTRA_ID, -1)
+    override fun setTitleBar(title: String) {
+        supportActionBar?.title = title
+    }
 
-        lifecycleScope.launch {
-            val items =  withContext(Dispatchers.IO) { MediaProvider.getItems() }
-            val mediaItem = items.firstOrNull { it.id == id }
+    override fun setImage(url: String) {
+        binding.detailThumb.loadUrl(url)
+    }
 
-            mediaItem?.let {
-                supportActionBar?.title = mediaItem.title
-
-                binding.detailThumb.loadUrl(mediaItem.url)
-                binding.detailVideoIndicator.visibility = when(mediaItem.type) {
-                    Type.PHOTO -> View.GONE
-                    Type.VIDEO -> View.VISIBLE
-                }
-            }
-
-        }
+    override fun setVideoIndicatorVisible(visible: Boolean) {
+        binding.detailVideoIndicator.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
 }
