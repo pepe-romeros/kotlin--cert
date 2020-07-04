@@ -1,4 +1,4 @@
-package com.example.kotlin.training.detail
+package com.example.kotlin.training.ui.detail
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityDetailBinding
 import com.example.kotlin.training.data.MediaItem.*
 import com.example.kotlin.training.data.MediaProvider
-import com.example.kotlin.training.util.loadUrl
+import com.example.kotlin.training.ui.loadUrl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

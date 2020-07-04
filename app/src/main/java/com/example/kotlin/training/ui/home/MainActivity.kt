@@ -1,4 +1,4 @@
-package com.example.kotlin.training.home
+package com.example.kotlin.training.ui.home
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,11 +8,11 @@ import androidx.lifecycle.lifecycleScope
 import com.example.kotlin.training.R
 import com.example.kotlin.training.base.BaseActivity
 import com.example.kotlin.training.databinding.ActivityMainBinding
-import com.example.kotlin.training.detail.DetailActivity
+import com.example.kotlin.training.ui.detail.DetailActivity
 import com.example.kotlin.training.data.MediaItem.Type
 import com.example.kotlin.training.data.Filter
 import com.example.kotlin.training.data.MediaProvider
-import com.example.kotlin.training.util.startActivity
+import com.example.kotlin.training.ui.startActivity
 
 import kotlinx.coroutines.*
 

@@ -1,4 +1,4 @@
-package com.example.kotlin.training.util
+package com.example.kotlin.training.ui
 
 import android.app.Activity
 import android.content.Context
@@ -12,7 +12,6 @@ import androidx.annotation.LayoutRes
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.kotlin.training.base.BaseActivity
 
 // region extensions to show messages to the user
 

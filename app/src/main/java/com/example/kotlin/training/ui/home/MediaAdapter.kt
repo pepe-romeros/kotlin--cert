@@ -1,4 +1,4 @@
-package com.example.kotlin.training.home
+package com.example.kotlin.training.ui.home
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import com.example.kotlin.training.databinding.ViewMediaItemBinding
 
 import com.example.kotlin.training.data.MediaItem
 import com.example.kotlin.training.data.MediaItem.Type
-import com.example.kotlin.training.util.inflate
-import com.example.kotlin.training.util.loadUrl
+import com.example.kotlin.training.ui.inflate
+import com.example.kotlin.training.ui.loadUrl
 import kotlin.properties.Delegates
 
 typealias MediaListener = (MediaItem) -> Unit
