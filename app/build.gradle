@@ -24,7 +24,9 @@ android {
         }
     }
 
-    viewBinding.enabled = true
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -49,5 +51,9 @@ dependencies {
 
     // Network image loading
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
     kapt 'com.github.bumptech.glide:glide:4.11.0'
+
+    // Dependency injection
+    implementation 'org.koin:koin-android-viewmodel:2.1.5'
 }

@@ -10,10 +10,12 @@ import com.example.kotlin.training.data.MediaItem.Type
 import com.example.kotlin.training.databinding.ActivityMainBinding
 import com.example.kotlin.training.ui.*
 import com.example.kotlin.training.ui.detail.DetailActivity
+import org.koin.android.scope.lifecycleScope
+import org.koin.android.viewmodel.scope.viewModel
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by lifecycleScope.viewModel(this)
     private lateinit var binding: ActivityMainBinding
     private val adapter = MediaAdapter { viewModel.onItemClicked(it) }
 
@@ -22,7 +24,7 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = getViewModel {
+        viewModel.apply {
             observe(progressVisible) { binding.progress.setVisible(it) }
             observe(items) { adapter.items = it }
             observeEvent(navigateToDetail) { navigateToDetail(it) }
