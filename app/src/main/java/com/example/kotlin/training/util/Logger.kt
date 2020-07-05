@@ -3,11 +3,10 @@ package com.example.kotlin.training.util
 import android.util.Log
 
 interface Logger {
-
     val tag: String
         get() = "${javaClass.name}_TAG"
 
-    fun inf(message: String) {
+    fun info(message: String) {
         Log.i(tag, message)
     }
 

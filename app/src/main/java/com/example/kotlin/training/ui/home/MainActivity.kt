@@ -23,13 +23,11 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         viewModel.apply {
             observe(progressVisible) { binding.progress.setVisible(it) }
             observe(items) { adapter.items = it }
             observeEvent(navigateToDetail) { navigateToDetail(it) }
         }
-
         binding.recycler.adapter = adapter
         viewModel.onFilteredClicked(Filter.None)
     }
@@ -45,7 +43,6 @@ class MainActivity : BaseActivity() {
             R.id.filter_videos -> Filter.ByType(Type.VIDEO)
             else -> Filter.None
         }
-
         viewModel.onFilteredClicked(filter)
         return super.onOptionsItemSelected(item)
     }

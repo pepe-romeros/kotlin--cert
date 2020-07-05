@@ -12,20 +12,14 @@ import com.example.kotlin.training.ui.inflate
 import com.example.kotlin.training.ui.loadUrl
 import kotlin.properties.Delegates
 
-typealias MediaListener = (MediaItem) -> Unit
-
-class MediaAdapter(private val listener: MediaListener): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+class MediaAdapter(private val listener: (MediaItem) -> Unit): RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     var items: List<MediaItem> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            parent.inflate(
-                R.layout.view_media_item
-            )
-        )
+        return ViewHolder(parent.inflate(R.layout.view_media_item))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

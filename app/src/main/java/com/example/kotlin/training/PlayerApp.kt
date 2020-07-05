@@ -27,7 +27,6 @@ class PlayerApp: Application() {
         scope <MainActivity> {
             viewModel { MainViewModel(get(), get(named("ioDispatcher"))) }
         }
-
         scope<DetailActivity> {
             viewModel { DetailViewModel(get(), get(named("ioDispatcher"))) }
         }

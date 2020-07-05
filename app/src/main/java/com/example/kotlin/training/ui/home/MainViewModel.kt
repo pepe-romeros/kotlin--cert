@@ -1,16 +1,14 @@
 package com.example.kotlin.training.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlin.training.data.Filter
 import com.example.kotlin.training.data.MediaItem
 import com.example.kotlin.training.data.MediaProvider
-import com.example.kotlin.training.data.MediaProviderImpl
 import com.example.kotlin.training.ui.Event
+import com.example.kotlin.training.ui.asLiveData
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -20,13 +18,13 @@ class MainViewModel(
 ): ViewModel() {
 
     private val _progressVisible = MutableLiveData<Boolean>()
-    val progressVisible:LiveData<Boolean> get() = _progressVisible
+    val progressVisible = _progressVisible.asLiveData()
 
     private val _items = MutableLiveData<List<MediaItem>>()
-    val items:LiveData<List<MediaItem>> get() = _items
+    val items = _items.asLiveData()
 
     private val _navigateToDetail = MutableLiveData<Event<Int>>()
-    val navigateToDetail:LiveData<Event<Int>> get() = _navigateToDetail
+    val navigateToDetail = _navigateToDetail.asLiveData()
 
     fun onFilteredClicked(filter: Filter) {
         viewModelScope.launch {

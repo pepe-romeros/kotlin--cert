@@ -1,14 +1,12 @@
 package com.example.kotlin.training.ui.detail
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlin.training.data.MediaItem
 import com.example.kotlin.training.data.MediaProvider
-import com.example.kotlin.training.data.MediaProviderImpl
+import com.example.kotlin.training.ui.asLiveData
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -18,7 +16,7 @@ class DetailViewModel(
 ): ViewModel() {
 
     private val _item = MutableLiveData<MediaItem>()
-    val item:LiveData<MediaItem> get() = _item
+    val item = _item.asLiveData()
 
     fun onCreate(itemId: Int) {
         viewModelScope.launch {
